@@ -1,4 +1,7 @@
 """
+Scroll version 2020.2r1 (Feb 14 2020)
+Copyright (c) 2020 Amy Parent <amy@amyparent.com>
+
 Usage: scroll [options] <command> [<args>...]
 
 \u001b[1mOptions\u001b[0m
@@ -10,6 +13,11 @@ Usage: scroll [options] <command> [<args>...]
     remove          Remove an entry from the bibliography
     export          Export the bibliography for external usage
     config          Configure scroll
+
+
+Report bugs to: amy@amyparent.com
+scroll home page: <https://github.com/amyinorbit/scroll>
+
 """
 from docopt import docopt
 import sys
