@@ -2,12 +2,13 @@
 Scroll version 2020.2r1 (Feb 14 2020)
 Copyright (c) 2020 Amy Parent <amy@amyparent.com>
 
-Usage: scroll [options] <command> [<args>...]
+Usage:
+    scroll [options] COMMAND [ARGS...]
 
-\u001b[1mOptions\u001b[0m
+Options:
     -h, --help      Print this help message and exit
 
-\u001b[1mCommands\u001b[0m
+Commands:
     list            Query the bibliography
     add             Add an entry to the bibliography
     remove          Remove an entry from the bibliography
@@ -21,7 +22,10 @@ scroll home page: <https://github.com/amyinorbit/scroll>
 """
 from docopt import docopt
 import sys
+import colorama
 from . import commands
+from . import options
+
 
 COMMANDS = {
     'list': commands.list_cmd,
@@ -29,12 +33,15 @@ COMMANDS = {
 }
 
 def main():
+    colorama.init()
+    conf = options.load_options()
     args = docopt(__doc__, version='0.1.1rc', options_first=True)
 
-    cmd = args['<command>']
-    cmd_args = [cmd] + args['<args>']
+    cmd = args['COMMAND']
+    cmd_args = [cmd] + args['ARGS']
+
 
     if cmd in COMMANDS:
-        COMMANDS[cmd].run(cmd_args)
+        COMMANDS[cmd].run(cmd_args, conf)
     else:
         exit(f'{cmd} is not a scroll command. See \'scroll --help\'.')
