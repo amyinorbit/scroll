@@ -1,10 +1,16 @@
 import os.path
 import sys
+import re
 import biblib
 from biblib import algo
 from biblib import bib
 from colorama import Fore, Back, Style
 from . import options
+
+mathmode = re.compile(r'(?<!\\)\$')
+
+def sanitize_latex(string):
+    return re.sub(mathmode, r'\$', string)
 
 class Formatter(object):
 
@@ -36,10 +42,10 @@ class Formatter(object):
     def __title(self, entry):
         if not 'title' in entry:
             return ''
-        title = entry['title']
+        title = entry['title'] # self.__filters(sanitize_latex(entry['title']))
         if len(title) > self.conf.title_length:
-            return '"%s..."' % entry['title'][:self.conf.title_length]
-        return '"%s" ' % entry['title']
+            return '"%s..."' % title[:self.conf.title_length]
+        return '"%s" ' % title
 
     def __year(self, entry):
         if not 'year' in entry:
