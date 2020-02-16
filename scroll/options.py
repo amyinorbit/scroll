@@ -1,3 +1,4 @@
+import os.path as path
 
 class OptionsObj(object):
     def __init__(self, **kwargs):
@@ -7,8 +8,14 @@ class OptionsObj(object):
     def __repr__(self):
         return f'{self.__dict__}'
 
+def get_rc_path():
+    return path.expanduser('~/.scrollrc')
+
+def get_default_db():
+    return path.expanduser('~/.scroll')
+
 DEFAULTS = OptionsObj(
-    path='/home/amy/scrolldb',
+    path=get_default_db(),
     verbose=True,
     max_authors=2,
     title_length=60

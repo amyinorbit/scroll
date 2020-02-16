@@ -1,10 +1,11 @@
 """
-Usage:
-    scroll list [-h] | [--cite-key] [QUERY...]
+Print a list of all, or a subset of the entries in a scroll database.
 
-Options:
-    -k, --cite-key  Print only the cite keys of matching get_entries
-    -h, --help      Print this help message and exit
+Usage: scroll list [-h] | [--cite-key] [QUERY...]
+
+Options
+    -k, --cite-key          Print only the cite keys of matching entries.
+    -h, --help              Print this help message and exit.
 
 """
 import argparse
